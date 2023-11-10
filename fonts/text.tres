@@ -1,0 +1,6 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bcf618cn462yj"]
+
+[ext_resource type="FontFile" uid="uid://llrtkffwfn7m" path="res://fonts/Nexa-Heavy.ttf" id="1_p1ytn"]
+
+[resource]
+font = ExtResource("1_p1ytn")

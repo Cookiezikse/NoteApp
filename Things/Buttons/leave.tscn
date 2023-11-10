@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlulv60jen6qn"]
+
+[ext_resource type="Texture2D" uid="uid://dxtfsjarjbo2g" path="res://Imports/PNG/Shadow/64/Exit.png" id="1_cmifs"]
+
+[sub_resource type="GDScript" id="GDScript_jp1rk"]
+script/source = "extends Button
+
+func _on_pressed():
+	get_tree().quit()
+"
+
+[node name="Leave" type="Button"]
+icon = ExtResource("1_cmifs")
+flat = true
+script = SubResource("GDScript_jp1rk")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

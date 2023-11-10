@@ -1,10 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvtyj6n11nwy5"]
+[gd_scene load_steps=5 format=3 uid="uid://cvtyj6n11nwy5"]
+
+[ext_resource type="LabelSettings" uid="uid://bcf618cn462yj" path="res://fonts/text.tres" id="1_fjjox"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r4kun"]
-content_margin_left = 20.0
-content_margin_top = 20.0
-content_margin_right = 20.0
-content_margin_bottom = 20.0
 bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
@@ -16,29 +14,64 @@ script/source = "extends PanelContainer
 
 var text = \"Default\"
 var date = \"XX YY ZZZZ\"
-
+var id = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$VBoxContainer/title.text = text
-	$VBoxContainer/date.text = date
+	$textPanel/Container/title.text = text
+	$textPanel/Container/date.text = date
+	$textPanel/Container/id.text = str(id)
+
+func _on_texture_button_pressed():
+	global.id_clicked = id
+	get_tree().change_scene_to_file(\"res://note.tscn\")
 "
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4g7gu"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+draw_center = false
+
 [node name="Card" type="PanelContainer"]
-custom_minimum_size = Vector2(150, 14)
+custom_minimum_size = Vector2(200, 14)
+offset_right = 150.0
+offset_bottom = 92.0
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_r4kun")
 script = SubResource("GDScript_6g1ha")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="textPanel" type="PanelContainer" parent="."]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4g7gu")
+
+[node name="Container" type="VBoxContainer" parent="textPanel"]
 layout_mode = 2
 
-[node name="title" type="Label" parent="VBoxContainer"]
+[node name="title" type="Label" parent="textPanel/Container"]
 layout_mode = 2
 text = "fffffffffffffffffffffffff"
+label_settings = ExtResource("1_fjjox")
+horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="date" type="Label" parent="VBoxContainer"]
+[node name="date" type="Label" parent="textPanel/Container"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.321569, 0.321569, 0.321569, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "21 May, 2023"
+label_settings = ExtResource("1_fjjox")
+horizontal_alignment = 1
+
+[node name="id" type="Label" parent="textPanel/Container"]
+layout_mode = 2
+text = "ID"
+label_settings = ExtResource("1_fjjox")
+horizontal_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1lmi1rpv1n58"]
+
+[ext_resource type="LabelSettings" uid="uid://c8r4typ2336ah" path="res://fonts/header_text.tres" id="1_x3ipr"]
+
+[sub_resource type="GDScript" id="GDScript_48dwd"]
+script/source = "extends Label
+
+func _on_texture_button_pressed():
+	get_tree().change_scene_to_file(\"res://menu.tscn\")
+"
+
+[node name="Label" type="Label"]
+text = "Home"
+label_settings = ExtResource("1_x3ipr")
+script = SubResource("GDScript_48dwd")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 91.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

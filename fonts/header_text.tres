@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c8r4typ2336ah"]
+
+[ext_resource type="FontFile" uid="uid://llrtkffwfn7m" path="res://fonts/Nexa-Heavy.ttf" id="1_omkok"]
+
+[resource]
+font = ExtResource("1_omkok")
+font_size = 32
