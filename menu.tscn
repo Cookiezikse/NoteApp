@@ -1,0 +1,305 @@
+[gd_scene load_steps=6 format=3 uid="uid://c44nw2lskup7a"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_rufjn"]
+[ext_resource type="FontFile" uid="uid://llrtkffwfn7m" path="res://fonts/Nexa-Heavy.ttf" id="1_vpmfi"]
+[ext_resource type="Texture2D" uid="uid://xk5bibijndgi" path="res://Imports/PNG/Shadow/32/Exit.png" id="3_2mij5"]
+[ext_resource type="PackedScene" uid="uid://cvtyj6n11nwy5" path="res://Things/card.tscn" id="4_jgwho"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_abqi5"]
+font = ExtResource("1_vpmfi")
+font_size = 32
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rufjn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.160784, 0.160784, 0.160784, 1)
+
+[node name="Pages" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Home" type="Control" parent="Pages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pages/Home"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="Control" parent="Pages/Home/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pages/Home/VBoxContainer/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 15.0
+offset_right = -19.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Pages/Home/VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+text = "My notes"
+label_settings = SubResource("LabelSettings_abqi5")
+
+[node name="Leave" type="Button" parent="Pages/Home/VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+icon = ExtResource("3_2mij5")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Pages/Home/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pages/Home/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="1" type="VBoxContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Card" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/1" instance=ExtResource("4_jgwho")]
+layout_mode = 2
+
+[node name="2" type="VBoxContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/2"]
+custom_minimum_size = Vector2(150, 14)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/2/PanelContainer"]
+layout_mode = 2
+text = "jgiojgiosjesgiojioejjjjjjjjjjjjjjjjjjjjjjj
+d
+drg
+rd
+g
+drg
+d
+rg"
+
+[node name="PanelContainer2" type="PanelContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/2"]
+custom_minimum_size = Vector2(150, 14)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/2/PanelContainer2"]
+layout_mode = 2
+text = "jgiojgiosjesgiojioejjjjjjjjjjjjjjjjjjjjjjj
+d
+drg
+rd
+g
+drg
+d
+rg"
+
+[node name="PanelContainer3" type="PanelContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/2"]
+custom_minimum_size = Vector2(150, 14)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/2/PanelContainer3"]
+layout_mode = 2
+text = "jgiojgiosjesgiojioejjjjjjjjjjjjjjjjjjjjjjj
+d
+drg
+rd
+g
+drg
+d
+rg"
+
+[node name="PanelContainer4" type="PanelContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/2"]
+custom_minimum_size = Vector2(150, 14)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/2/PanelContainer4"]
+layout_mode = 2
+text = "jgiojgiosjesgiojioejjjjjjjjjjjjjjjjjjjjjjj
+d
+drg
+rd
+g
+drg
+d
+rg"
+
+[node name="3" type="VBoxContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/3"]
+custom_minimum_size = Vector2(150, 14)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/3/PanelContainer"]
+layout_mode = 2
+text = "jgiojgiosjesgiojioejjjjjjjjjjjjjjjjjjjjjjj
+d
+drg
+rd
+g
+drg
+d
+rg"
+
+[node name="PanelContainer2" type="PanelContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/3"]
+custom_minimum_size = Vector2(150, 14)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/3/PanelContainer2"]
+layout_mode = 2
+text = "jgiojgiosjesgiojioejjjjjjjjjjjjjjjjjjjjjjj
+d
+drg
+rd
+g
+drg
+d
+rg"
+
+[node name="PanelContainer3" type="PanelContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/3"]
+custom_minimum_size = Vector2(150, 14)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/3/PanelContainer3"]
+layout_mode = 2
+text = "jgiojgiosjesgiojioejjjjjjjjjjjjjjjjjjjjjjj
+d
+drg
+rd
+g
+drg
+d
+rg"
+
+[node name="PanelContainer4" type="PanelContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/3"]
+custom_minimum_size = Vector2(150, 14)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/3/PanelContainer4"]
+layout_mode = 2
+text = "jgiojgiosjesgiojioejjjjjjjjjjjjjjjjjjjjjjj
+d
+drg
+rd
+g
+drg
+d
+rg"
+
+[node name="4" type="VBoxContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/4"]
+custom_minimum_size = Vector2(150, 14)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/4/PanelContainer"]
+layout_mode = 2
+text = "jgiojgiosjesgiojioejjjjjjjjjjjjjjjjjjjjjjj
+d
+drg
+rd
+g
+drg
+d
+rg"
+
+[node name="PanelContainer2" type="PanelContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/4"]
+custom_minimum_size = Vector2(150, 14)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/4/PanelContainer2"]
+layout_mode = 2
+text = "jgiojgiosjesgiojioejjjjjjjjjjjjjjjjjjjjjjj
+d
+drg
+rd
+g
+drg
+d
+rg"
+
+[node name="PanelContainer3" type="PanelContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/4"]
+custom_minimum_size = Vector2(150, 14)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/4/PanelContainer3"]
+layout_mode = 2
+text = "jgiojgiosjesgiojioejjjjjjjjjjjjjjjjjjjjjjj
+d
+drg
+rd
+g
+drg
+d
+rg"
+
+[node name="PanelContainer4" type="PanelContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/4"]
+custom_minimum_size = Vector2(150, 14)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/4/PanelContainer4"]
+layout_mode = 2
+text = "jgiojgiosjesgiojioejjjjjjjjjjjjjjjjjjjjjjj
+d
+drg
+rd
+g
+drg
+d
+rg"
+
+[connection signal="pressed" from="Pages/Home/VBoxContainer/Header/HBoxContainer/Leave" to="." method="_on_leave_pressed"]

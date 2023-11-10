@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvtyj6n11nwy5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r4kun"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="GDScript" id="GDScript_6g1ha"]
+script/source = "extends PanelContainer
+
+var text = \"Default\"
+var date = \"XX YY ZZZZ\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$VBoxContainer/title.text = text
+	$VBoxContainer/date.text = date
+"
+
+[node name="Card" type="PanelContainer"]
+custom_minimum_size = Vector2(150, 14)
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r4kun")
+script = SubResource("GDScript_6g1ha")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "fffffffffffffffffffffffff"
+autowrap_mode = 3
+
+[node name="date" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.321569, 0.321569, 0.321569, 1)
+text = "21 May, 2023"
