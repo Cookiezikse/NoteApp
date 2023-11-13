@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch0j1f337mx3x"]
+
+[ext_resource type="LabelSettings" uid="uid://c8r4typ2336ah" path="res://fonts/header_text.tres" id="1_ndmtk"]
+
+[node name="text" type="Label"]
+offset_right = 91.0
+offset_bottom = 45.0
+text = "Home
+"
+label_settings = ExtResource("1_ndmtk")

@@ -8,20 +8,8 @@ var card_scene = preload("res://Things/card.tscn")
 
 var longestId = 0
 
-func load_json_file(filepath: String):
-	if FileAccess.file_exists(filepath):
-		var dataFile = FileAccess.open(filepath,FileAccess.READ)
-		var parsedResult = JSON.parse_string(dataFile.get_as_text())
-		if parsedResult is Dictionary:
-			return parsedResult
-		else:
-			print("Error reading file")
-		dataFile.close()
-	else:
-		print("File doesn't exist !")
-
 func _ready():
-	var datas = load_json_file(file)
+	var datas = global.load_json_file(file)
 	global.id_clicked = null
 	var index = 0
 	index = datas.size()
@@ -125,3 +113,9 @@ func ancien_ready(): #Chercher un système d'id
 		if count < longestId:
 			create_card($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/5",count)
 		count += 1
+
+
+
+func _on_settings_pressed():
+	pass
+	#get_tree().change_scene_to_file("res://settings.tscn")

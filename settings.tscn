@@ -1,0 +1,110 @@
+[gd_scene load_steps=6 format=3 uid="uid://dohbcgvn8nc0q"]
+
+[ext_resource type="PackedScene" uid="uid://b1lmi1rpv1n58" path="res://Things/Buttons/home.tscn" id="1_p0mnt"]
+[ext_resource type="Script" path="res://settings.gd" id="1_uq3yc"]
+[ext_resource type="PackedScene" uid="uid://dlulv60jen6qn" path="res://Things/Buttons/leave.tscn" id="2_00ddw"]
+[ext_resource type="PackedScene" uid="uid://ch0j1f337mx3x" path="res://Things/texts/header.tscn" id="3_wih8w"]
+[ext_resource type="PackedScene" uid="uid://diuyita52ajio" path="res://Things/texts/min.tscn" id="4_3qpoi"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uq3yc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+offset_left = 37.0
+offset_top = -4.0
+offset_right = 1105.0
+offset_bottom = 96.0
+
+[node name="Label" parent="VBoxContainer/Header/HBoxContainer" instance=ExtResource("1_p0mnt")]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Leave" parent="VBoxContainer/Header/HBoxContainer" instance=ExtResource("2_00ddw")]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="text" parent="VBoxContainer/VBoxContainer" instance=ExtResource("3_wih8w")]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Settings
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="text" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_wih8w")]
+layout_mode = 2
+text = "Background Color : 
+"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+
+[node name="min" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_3qpoi")]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+text = "Default"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/min" index="0"]
+offset_left = -2.0
+offset_top = 24.0
+offset_right = 2.0
+offset_bottom = -21.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[editable path="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/min"]

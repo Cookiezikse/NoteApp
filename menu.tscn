@@ -75,8 +75,16 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="Pages/Home/VBoxContainer/Header/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 text = "My notes"
 label_settings = SubResource("LabelSettings_abqi5")
+
+[node name="settings" type="Button" parent="Pages/Home/VBoxContainer/Header/HBoxContainer/Label"]
+layout_mode = 0
+offset_right = 141.0
+offset_bottom = 43.0
+mouse_default_cursor_shape = 2
+flat = true
 
 [node name="newNote" type="Button" parent="Pages/Home/VBoxContainer/Header/HBoxContainer"]
 layout_mode = 2
@@ -143,4 +151,5 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_constants/separation = 10
 
+[connection signal="pressed" from="Pages/Home/VBoxContainer/Header/HBoxContainer/Label/settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Pages/Home/VBoxContainer/Header/HBoxContainer/newNote" to="Pages/Home/VBoxContainer/Header/HBoxContainer/newNote" method="_on_pressed"]

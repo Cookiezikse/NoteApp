@@ -13,38 +13,8 @@ script/source = "extends Control
 
 # https://youtu.be/mI4HfyBdV-k?feature=shared   -> ça explique le json et les files 
 
-func load_json_file(filepath: String):
-	if FileAccess.file_exists(filepath):
-		var dataFile = FileAccess.open(filepath,FileAccess.READ)
-		var parsedResult = JSON.parse_string(dataFile.get_as_text())
-		if parsedResult is Dictionary:
-			return parsedResult
-		else:
-			print(\"Error reading file\")
-		dataFile.close()
-	else:
-		print(\"File doesn't exist !\")
-
-
-func save_json_file(filepath: String, data):
-	if FileAccess.file_exists(filepath):
-		var dataFile = FileAccess.open(filepath,FileAccess.READ_WRITE)
-		var parsedResult = JSON.parse_string(dataFile.get_as_text()) #BUG ICI  #Attempt to call function 'get_as_text' in base 'null instance' on a null instance
-		if !parsedResult.has(\"note\" + str(global.id_clicked)):
-			parsedResult[\"note\" + str(parsedResult.size()-1)] = data
-		else:
-			parsedResult[\"note\" + str(global.id_clicked)].clear()
-			parsedResult[\"note\" + str(global.id_clicked)] = data
-
-		var json_data = JSON.stringify(parsedResult)
-		dataFile.store_string(json_data)
-		dataFile.close()
-	else:
-		print(\"File doesn't exist !\")
-
-
 func _ready():
-	var datas = load_json_file(file)
+	var datas = global.load_json_file(file)
 	if global.id_clicked != null:
 		var points = datas[\"note\" + str(global.id_clicked)]
 		$VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text = points[\"text\"]
@@ -56,7 +26,7 @@ func _on_label_focus_exited():
 	\"id\": global.id_clicked,
 	\"text\": $VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text
 	}
-	save_json_file(file, data)
+	global.save_note_json_file(file, data)
 
 func save(data):
 	var files = FileAccess.open(file, FileAccess.WRITE)
@@ -131,7 +101,7 @@ content_margin_left = 10.0
 content_margin_top = 10.0
 content_margin_right = 10.0
 content_margin_bottom = 10.0
-bg_color = Color(0.113725, 0.113725, 0.113725, 1)
+bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -153,7 +123,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.160784, 0.160784, 0.160784, 1)
+color = Color(0.0980392, 0.0980392, 0.0980392, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -182,6 +152,7 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="VBoxContainer/Header/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Date : XX YY ZZZZ"
@@ -189,6 +160,7 @@ label_settings = ExtResource("1_g2rpv")
 
 [node name="Leave" parent="VBoxContainer/Header/HBoxContainer" instance=ExtResource("2_u6a40")]
 layout_mode = 2
+size_flags_horizontal = 10
 
 [node name="Note_text" type="Control" parent="VBoxContainer"]
 layout_mode = 2
@@ -199,8 +171,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 33.0
-offset_right = -42.0
+offset_left = 126.0
+offset_right = -139.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -214,6 +186,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_3v2nw")
 [node name="Label" type="TextEdit" parent="VBoxContainer/Note_text/ScrollContainer/PanelContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_colors/background_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 theme_override_fonts/font = ExtResource("1_1riq5")
 theme_override_font_sizes/font_size = 32
 placeholder_text = "Start with some text !"
