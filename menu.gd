@@ -1,7 +1,7 @@
 extends Control
 
 var card_scene = preload("res://Things/card.tscn")
-@onready var file = 'res://datas/datas.json'
+@onready var file = 'datas/datas.json' # ça arrive pas a y acceder quand on a le .exe, voir les solutions à avoir
 
 var longestId = 0
 
@@ -17,13 +17,7 @@ func load_json_file(filepath: String):
 	else:
 		print("File doesn't exist !")
 
-func _ready(): #Chercher un système d'id
-	#for i in range(10):
-	#	create_card($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/1", i)
-	#	create_card($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/2", i+100)
-	#	create_card($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/3", i+1000)
-	#	create_card($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/4", i+10000)
-	#	create_card($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/5", i+100000)
+func _ready():
 	var datas = load_json_file(file)
 	global.id_clicked = null
 	var index = 0
@@ -32,6 +26,10 @@ func _ready(): #Chercher un système d'id
 	longestId = index - 1
 	global.lastId = longestId
 	var count = 0 
+	
+	print("Menu: ")
+	print(datas)
+	
 	while count < index:
 		#tant qu'il a pas un id il le fait, pour eviter que ça fasse des troues dans les notes
 		if datas.has("note" + str(count)):

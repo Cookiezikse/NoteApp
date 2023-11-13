@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c44nw2lskup7a"]
+[gd_scene load_steps=6 format=3 uid="uid://c44nw2lskup7a"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_rufjn"]
 [ext_resource type="FontFile" uid="uid://llrtkffwfn7m" path="res://fonts/Nexa-Heavy.ttf" id="1_vpmfi"]
 [ext_resource type="PackedScene" uid="uid://dlulv60jen6qn" path="res://Things/Buttons/leave.tscn" id="3_q2ny5"]
-[ext_resource type="PackedScene" uid="uid://cvtyj6n11nwy5" path="res://Things/card.tscn" id="4_jgwho"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_abqi5"]
 font = ExtResource("1_vpmfi")
@@ -124,39 +123,24 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Card" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/1" instance=ExtResource("4_jgwho")]
-layout_mode = 2
-
 [node name="2" type="VBoxContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_constants/separation = 10
-
-[node name="Card" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/2" instance=ExtResource("4_jgwho")]
-layout_mode = 2
 
 [node name="3" type="VBoxContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Card" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/3" instance=ExtResource("4_jgwho")]
-layout_mode = 2
-
 [node name="4" type="VBoxContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Card" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/4" instance=ExtResource("4_jgwho")]
-layout_mode = 2
-
 [node name="5" type="VBoxContainer" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_constants/separation = 10
-
-[node name="Card" parent="Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/5" instance=ExtResource("4_jgwho")]
-layout_mode = 2
 
 [connection signal="pressed" from="Pages/Home/VBoxContainer/Header/HBoxContainer/newNote" to="Pages/Home/VBoxContainer/Header/HBoxContainer/newNote" method="_on_pressed"]

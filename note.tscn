@@ -9,7 +9,7 @@
 resource_name = "Note"
 script/source = "extends Control
 
-@onready var file = 'res://datas/datas.txt'
+@onready var file = 'datas/datas.json'
 
 # https://youtu.be/mI4HfyBdV-k?feature=shared   -> ça explique le json et les files 
 
@@ -18,7 +18,6 @@ func load_json_file(filepath: String):
 		var dataFile = FileAccess.open(filepath,FileAccess.READ)
 		var parsedResult = JSON.parse_string(dataFile.get_as_text())
 		if parsedResult is Dictionary:
-			#print(parsedResult)
 			return parsedResult
 		else:
 			print(\"Error reading file\")
@@ -30,7 +29,7 @@ func load_json_file(filepath: String):
 func save_json_file(filepath: String, data):
 	if FileAccess.file_exists(filepath):
 		var dataFile = FileAccess.open(filepath,FileAccess.READ_WRITE)
-		var parsedResult = JSON.parse_string(dataFile.get_as_text())
+		var parsedResult = JSON.parse_string(dataFile.get_as_text()) #BUG ICI  #Attempt to call function 'get_as_text' in base 'null instance' on a null instance
 		if !parsedResult.has(\"note\" + str(global.id_clicked)):
 			parsedResult[\"note\" + str(parsedResult.size()-1)] = data
 		else:
@@ -45,30 +44,31 @@ func save_json_file(filepath: String, data):
 
 
 func _ready():
-	var datas = load_json_file(\"datas/datas.json\")
+	var datas = load_json_file(file)
 	if global.id_clicked != null:
 		var points = datas[\"note\" + str(global.id_clicked)]
 		$VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text = points[\"text\"]
+	else:
+		global.id_clicked = datas.size() - 1
 
 func _on_label_focus_exited():
 	var data = {
 	\"id\": global.id_clicked,
 	\"text\": $VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text
 	}
-	print(data)
-	save_json_file(\"datas/datas.json\", data)
+	save_json_file(file, data)
 
 func save(data):
-	var files = FileAccess.open(\"datas/datas.json\", FileAccess.WRITE)
+	var files = FileAccess.open(file, FileAccess.WRITE)
 	files.store_line(JSON.stringify(data))
 	
 func load_datas():
-	var files = FileAccess.open(\"datas/datas.json\",FileAccess.READ)
+	var files = FileAccess.open(file,FileAccess.READ)
 	var datasssss = JSON.parse_string(files.get_as_text())
 	return datasssss
 
 func saving_txt():
-	var f = FileAccess.open(\"datas/datas.txt\",FileAccess.READ_WRITE)
+	var f = FileAccess.open(file,FileAccess.READ_WRITE)
 	if global.id_clicked != null:
 		var index = 0
 		while not f.eof_reached(): # iterate through all lines until the end of file is reached
