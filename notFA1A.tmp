@@ -18,26 +18,32 @@ func load_json_file(filepath: String):
 		var dataFile = FileAccess.open(filepath,FileAccess.READ)
 		var parsedResult = JSON.parse_string(dataFile.get_as_text())
 		if parsedResult is Dictionary:
-			#print(parsedResult)
-			return parsedResult
+			print(parsedResult)
+			#return parsedResult
 		else:
 			print(\"Error reading file\")
 		dataFile.close()
 	else:
 		print(\"File doesn't exist !\")
-
-
+	
 func save_json_file(filepath: String, data):
 	if FileAccess.file_exists(filepath):
 		var dataFile = FileAccess.open(filepath,FileAccess.READ_WRITE)
+		#dataFile[\"note\"] = {\"id\":data[\"id\"],\"text\":data[\"text\"]}
 		var parsedResult = JSON.parse_string(dataFile.get_as_text())
-		if !parsedResult.has(\"note\" + str(global.id_clicked)):
-			parsedResult[\"note\" + str(parsedResult.size()-1)] = data
+		if !parsedResult:
+			var json_data = JSON.stringify(data)
+			#parsedResult.append(data)
+			dataFile.store_string(json_data)
 		else:
-			parsedResult[\"note\" + str(global.id_clicked)].clear()
-			parsedResult[\"note\" + str(global.id_clicked)] = data
-
+			parsedResult[\"note\"] = data
+			#var json_data = JSON.stringify(parsedResult)
+			#print(parsedResult)
+		#data[\"iosrheoihsr\"] = 1000
+		#print(parsedResult)
+		#parsedResult[\"Note\"] = data
 		var json_data = JSON.stringify(parsedResult)
+		#parsedResult.append(data)
 		dataFile.store_string(json_data)
 		dataFile.close()
 	else:
@@ -45,63 +51,41 @@ func save_json_file(filepath: String, data):
 
 
 func _ready():
-	var datas = load_json_file(\"datas/datas.json\")
 	if global.id_clicked != null:
-		var points = datas[\"note\" + str(global.id_clicked)]
-		$VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text = points[\"text\"]
-
-func _on_label_focus_exited():
-	var data = {
-	\"id\": global.id_clicked,
-	\"text\": $VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text
-	}
-	print(data)
-	save_json_file(\"datas/datas.json\", data)
-
-func save(data):
-	var files = FileAccess.open(\"datas/datas.json\", FileAccess.WRITE)
-	files.store_line(JSON.stringify(data))
-	
-func load_datas():
-	var files = FileAccess.open(\"datas/datas.json\",FileAccess.READ)
-	var datasssss = JSON.parse_string(files.get_as_text())
-	return datasssss
-
-func saving_txt():
-	var f = FileAccess.open(\"datas/datas.txt\",FileAccess.READ_WRITE)
-	if global.id_clicked != null:
+		var line = \"\"
+		var f = FileAccess.open(\"datas/datas.txt\",FileAccess.READ)
 		var index = 0
 		while not f.eof_reached(): # iterate through all lines until the end of file is reached
 			if index == global.id_clicked:
-				#Le retour à la ligne fait que ça le met dans l'autre line !
-				f.store_string($VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text)
+				line = f.get_line()
 				break;
 			index+=1
 			f.get_line()
-	else:
-		f.seek_end()
-		f.store_string($VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text)
-	f.close()
+		f.close()
+		if !line:
+			line = \"Error/NoData\"
+		$VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text = line
 
-
-		#var line = \"\"
-		#var f = FileAccess.open(\"datas/datas.txt\",FileAccess.READ)
-		#var index = 0
-		#while not f.eof_reached():
-		#	if index == global.id_clicked:
-		#		line = f.get_line()
-		#		break;
-		#	index+=1
-		#	f.get_line()
-		#f.close()
-		#if !line:
-		#	line = \"Error/NoData\"
-
-
-
-
-
-
+	var data = {
+	\"id\": global.id_clicked - 99,
+	\"text\": $VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text
+	}
+	
+	var data2 = {
+	\"id\": global.id_clicked - 100,
+	\"text\": $VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text
+	}
+	#save_json_file(\"datas/datas.json\", data2)
+	
+	var start = {}
+	save_json_file(\"datas/datas.json\", start)
+	load_json_file(\"datas/datas.json\")
+	save_json_file(\"datas/datas.json\", data)
+	
+	load_json_file(\"datas/datas.json\")
+	
+	
+		
 	#var file = FileAccess.open(\"datas/datas.json\", FileAccess.READ)
 	#var content_as_text = file.get_as_text()
 	#if !content_as_text:
@@ -124,6 +108,34 @@ func saving_txt():
 	#else:
 	#	print(\"JSON Parse Error: \",json.get_error_message(), \" in \",json_data, \" at line \", json.get_error_line())
 		
+	
+
+
+
+func _on_label_focus_exited():
+	var f = FileAccess.open(\"datas/datas.txt\",FileAccess.READ_WRITE)
+	if global.id_clicked != null:
+		var index = 0
+		while not f.eof_reached(): # iterate through all lines until the end of file is reached
+			if index == global.id_clicked:
+				#Le retour à la ligne fait que ça le met dans l'autre line !
+				f.store_string($VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text)
+				break;
+			index+=1
+			f.get_line()
+	else:
+		f.seek_end()
+		f.store_string($VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text)
+	f.close()
+
+func save(data):
+	var files = FileAccess.open(\"datas/datas.json\", FileAccess.WRITE)
+	files.store_line(JSON.stringify(data))
+	
+func load_datas():
+	var files = FileAccess.open(\"datas/datas.json\",FileAccess.READ)
+	var datasssss = JSON.parse_string(files.get_as_text())
+	return datasssss
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3v2nw"]
