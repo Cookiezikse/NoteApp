@@ -5,6 +5,11 @@ var card_scene = preload("res://Things/card.tscn")
 
 var longestId = 0
 
+func load():
+	var files = FileAccess.open("datas/datas.json",FileAccess.READ)
+	var datasssss = JSON.parse_string(file.get_as_text())
+	return datasssss
+
 func _ready(): #Chercher un système d'id
 	#for i in range(10):
 	#	create_card($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/1", i)
@@ -20,6 +25,7 @@ func _ready(): #Chercher un système d'id
 		
 		f.get_line()
 	f.close()
+	var data = load("res://datas/datas.json")
 	longestId = index - 1
 	global.lastId = longestId
 	var count = 0 
@@ -54,6 +60,21 @@ func create_card(object , i):
 		index+=1
 		f.get_line()
 	f.close()
+	if !line:
+		line = "Error/NoData"
+
+	card.text = line
+	card.date = "10 Nov, 2023"
+	card.id = i
+	object.add_child(card)
+	
+func create_card_json(object , i):
+	var data = load("datas/datas.json")
+	var card = card_scene.instantiate()
+	var line = ""
+	var index = 0
+	if data["id"] == i:
+		line = data["text"]
 	if !line:
 		line = "Error/NoData"
 

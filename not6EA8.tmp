@@ -26,11 +26,7 @@ func load_json_file(filepath: String):
 func save_json_file(filepath: String, data):
 	if FileAccess.file_exists(filepath):
 		var dataFile = FileAccess.open(filepath,FileAccess.READ_WRITE)
-		#dataFile[\"note\"] = {\"id\":data[\"id\"],\"text\":data[\"text\"]}
-		var parsedResult = JSON.parse_string(dataFile.get_as_text())
-		parsedResult[\"note\"] = {\"id\":data[\"id\"],\"text\":data[\"text\"]}
 		var json_data = JSON.stringify(data)
-		
 		dataFile.store_string(json_data)
 	else:
 		print(\"File doesn't exist !\")
@@ -57,16 +53,9 @@ func _ready():
 	\"text\": $VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text
 	}
 	
-	var data2 = {
-	\"id\": global.id_clicked -1,
-	\"text\": $VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text
-	}
-	#save_json_file(\"datas/datas.json\", data2)
-	#save_json_file(\"datas/datas.json\", data)
+	save_json_file(\"datas/datas.json\", data)
 	load_json_file(\"datas/datas.json\")
-	save_json_file(\"datas/datas.json\",data2)
-	save_json_file(\"datas/datas.json\",data)
-	load_json_file(\"datas/datas.json\")
+	
 	
 	
 	
