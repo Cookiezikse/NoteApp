@@ -3,6 +3,9 @@ extends Control
 var card_scene = preload("res://Things/card.tscn")
 @onready var file = 'datas/datas.json' # ça arrive pas a y acceder quand on a le .exe, voir les solutions à avoir
 
+#créer le file sinon et voilà
+
+
 var longestId = 0
 
 func load_json_file(filepath: String):
