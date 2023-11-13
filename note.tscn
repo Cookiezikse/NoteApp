@@ -11,10 +11,13 @@ script/source = "extends Control
 
 @onready var file = 'res://datas/datas.txt'
 
-func load_json_file(filepath: String):
+# https://youtu.be/mI4HfyBdV-k?feature=shared   -> ça explique le json et les files 
+
+func load_json_file(filepath: String = \"datas/datas.json\"):
 	if FileAccess.file_exists(filepath):
 		var dataFile = FileAccess.open(filepath,FileAccess.READ)
 		var parsedResult = JSON.parse_string(dataFile.get_as_text())
+		dataFile.close()
 		if parsedResult is Dictionary:
 			print(parsedResult)
 			#return parsedResult
@@ -22,16 +25,16 @@ func load_json_file(filepath: String):
 			print(\"Error reding file\")
 	else:
 		print(\"File doesn't exist !\")
-
+	
 func save_json_file(filepath: String, data):
 	if FileAccess.file_exists(filepath):
 		var dataFile = FileAccess.open(filepath,FileAccess.READ_WRITE)
 		#dataFile[\"note\"] = {\"id\":data[\"id\"],\"text\":data[\"text\"]}
 		var parsedResult = JSON.parse_string(dataFile.get_as_text())
-		parsedResult[\"note\"] = {\"id\":data[\"id\"],\"text\":data[\"text\"]}
 		var json_data = JSON.stringify(data)
-		
-		dataFile.store_string(json_data)
+		#parsedResult.append(data)
+		dataFile.store_string(parsedResult)
+		dataFile.close()
 	else:
 		print(\"File doesn't exist !\")
 
@@ -53,18 +56,18 @@ func _ready():
 		$VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text = line
 
 	var data = {
-	\"id\": global.id_clicked -10,
+	\"id\": global.id_clicked - 99,
 	\"text\": $VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text
 	}
 	
 	var data2 = {
-	\"id\": global.id_clicked -1,
+	\"id\": global.id_clicked - 100,
 	\"text\": $VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text
 	}
 	#save_json_file(\"datas/datas.json\", data2)
 	#save_json_file(\"datas/datas.json\", data)
-	load_json_file(\"datas/datas.json\")
 	save_json_file(\"datas/datas.json\",data2)
+	load_json_file(\"datas/datas.json\")
 	save_json_file(\"datas/datas.json\",data)
 	load_json_file(\"datas/datas.json\")
 	
