@@ -25,6 +25,7 @@ global="*res://global.gd"
 
 window/size/viewport_width=500
 window/size/viewport_height=600
+window/size/resizable=false
 
 [dotnet]
 
