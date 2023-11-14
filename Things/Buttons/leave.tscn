@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlulv60jen6qn"]
 
-[ext_resource type="Texture2D" uid="uid://dxtfsjarjbo2g" path="res://Imports/PNG/Shadow/64/Exit.png" id="1_cmifs"]
+[ext_resource type="Texture2D" path="res://Imports/Sprite-0003.png" id="1_csyrv"]
 
 [sub_resource type="GDScript" id="GDScript_jp1rk"]
 script/source = "extends Button
@@ -10,7 +10,8 @@ func _on_pressed():
 "
 
 [node name="Leave" type="Button"]
-icon = ExtResource("1_cmifs")
+texture_filter = 1
+icon = ExtResource("1_csyrv")
 flat = true
 script = SubResource("GDScript_jp1rk")
 

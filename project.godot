@@ -14,12 +14,17 @@ config/name="NoteIt"
 run/main_scene="res://menu.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 boot_splash/show_image=false
-config/icon="res://Imports/PNG/Shadow/160/Slash.png"
+config/icon="res://Imports/pen.png"
 config/windows_native_icon="res://Imports/3643749-edit-pen-pencil-write-writing_113397.ico"
 
 [autoload]
 
 global="*res://global.gd"
+
+[display]
+
+window/size/viewport_width=500
+window/size/viewport_height=600
 
 [dotnet]
 
