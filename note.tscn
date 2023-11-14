@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2iye25t0oe68"]
+[gd_scene load_steps=6 format=3 uid="uid://b2iye25t0oe68"]
 
 [ext_resource type="FontFile" uid="uid://llrtkffwfn7m" path="res://fonts/Nexa-Heavy.ttf" id="1_1riq5"]
 [ext_resource type="LabelSettings" uid="uid://c8r4typ2336ah" path="res://fonts/header_text.tres" id="1_g2rpv"]
 [ext_resource type="PackedScene" uid="uid://b1lmi1rpv1n58" path="res://Things/Buttons/home.tscn" id="1_g2xox"]
-[ext_resource type="PackedScene" uid="uid://dlulv60jen6qn" path="res://Things/Buttons/leave.tscn" id="2_u6a40"]
 
 [sub_resource type="GDScript" id="GDScript_jghmg"]
 resource_name = "Note"
@@ -157,10 +156,6 @@ layout_mode = 2
 size_flags_horizontal = 6
 text = "Date : XX YY ZZZZ"
 label_settings = ExtResource("1_g2rpv")
-
-[node name="Leave" parent="VBoxContainer/Header/HBoxContainer" instance=ExtResource("2_u6a40")]
-layout_mode = 2
-size_flags_horizontal = 10
 
 [node name="Note_text" type="Control" parent="VBoxContainer"]
 layout_mode = 2

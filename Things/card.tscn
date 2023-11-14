@@ -35,7 +35,7 @@ content_margin_bottom = 20.0
 draw_center = false
 
 [node name="Card" type="PanelContainer"]
-custom_minimum_size = Vector2(200, 14)
+custom_minimum_size = Vector2(150, 14)
 offset_right = 150.0
 offset_bottom = 92.0
 mouse_default_cursor_shape = 2
