@@ -18,8 +18,8 @@ func _ready():
 	global.lastId = longestId
 	var count = 0 
 	
-	print("Menu: ")
-	print(datas)
+	#print("Menu: ")
+	#print(datas)
 	
 	while count < index:
 		#tant qu'il a pas un id il le fait, pour eviter que ça fasse des troues dans les notes
@@ -32,12 +32,6 @@ func _ready():
 		if datas.has("note" + str(count)):
 			create_card_json($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/3",count,datas["note" + str(count)])
 		count +=1
-		if datas.has("note" + str(count)):
-			create_card_json($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/4",count,datas["note" + str(count)])
-		count +=1
-		if datas.has("note" + str(count)):
-			create_card_json($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/5",count,datas["note" + str(count)])
-		count += 1
 
 func create_card_json(object , count ,data):
 	var card = card_scene.instantiate()
