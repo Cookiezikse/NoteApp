@@ -11,6 +11,7 @@ func load_json_file(filepath: String):
 		var dataFile = FileAccess.open(filepath,FileAccess.READ)
 		var parsedResult = JSON.parse_string(dataFile.get_as_text())
 		if parsedResult is Dictionary:
+			dataFile.close()
 			return parsedResult
 		else:
 			print("Error reading file")
@@ -18,13 +19,12 @@ func load_json_file(filepath: String):
 	else:
 		print("File doesn't exist !")
 
-
-func save_note_json_file(filepath: String, data):
+func save_note_json_file(filepath: String,parsedResult ,data):
 	if FileAccess.file_exists(filepath):
-		var dataFile = FileAccess.open(filepath,FileAccess.READ_WRITE)
-		var parsedResult = JSON.parse_string(dataFile.get_as_text())
+		var dataFile = FileAccess.open(filepath,FileAccess.WRITE)
+		print(parsedResult)
 		if !parsedResult.has("note" + str(global.id_clicked)):
-			parsedResult["note" + str(parsedResult.size()-1)] = data
+			parsedResult["note" + str(parsedResult.size())] = data
 		else:
 			
 			var list = []

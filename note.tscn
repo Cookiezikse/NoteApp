@@ -12,22 +12,25 @@ script/source = "extends Control
 
 # https://youtu.be/mI4HfyBdV-k?feature=shared   -> ça explique le json et les files 
 
+#Load the data of the file to see if there is something
 func _ready():
 	var datas = global.load_json_file(file)
 	if global.id_clicked != null:
 		var points = datas[\"note\" + str(global.id_clicked)]
 		label.text = points[\"text\"]
 	else:
-		global.id_clicked = datas.size() - 1
+		global.id_clicked = datas.size()
 		#print(datas.size())
 		#print(global.id_clicked)
 
+#When he clicks on something else
 func _on_label_focus_exited():
 	if label.text != \"\":
 		var data = {\"id\":global.id_clicked,\"text\":label.text}
-		#print(data[\"text\"])
-		global.save_note_json_file(file, data)
+		var parsedData = global.load_json_file('datas/datas.json')
+		global.save_note_json_file(file,parsedData ,data)
 
+#Just if he wants to use shortcuts to go fast
 func _input(event):
 	if event.is_action_pressed(\"ui_cancel\"):
 		get_tree().change_scene_to_file(\"res://menu.tscn\")

@@ -3,11 +3,10 @@ extends Control
 var card_scene = preload("res://Things/card.tscn")
 @onready var file = 'datas/datas.json' # ça arrive pas a y acceder quand on a le .exe, voir les solutions à avoir
 
-#créer le file sinon et voilà
-
-
 var longestId = 0
 
+
+#Does the screen with all the notes 
 func _ready():
 	var datas = global.load_json_file(file)
 	global.id_clicked = null
@@ -17,7 +16,7 @@ func _ready():
 	global.lastId = longestId
 	var count = 0 
 	
-	print(datas)
+	#print(datas)
 	
 	while count < index:
 		#tant qu'il a pas un id il le fait, pour eviter que ça fasse des troues dans les notes
@@ -31,6 +30,7 @@ func _ready():
 			create_card_json($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/3",count,datas["note" + str(count)])
 		count +=1
 
+#Create a card with its own text and id
 func create_card_json(object , count ,data):
 	var card = card_scene.instantiate()
 	#print(count)
