@@ -4,22 +4,12 @@
 [ext_resource type="FontFile" uid="uid://llrtkffwfn7m" path="res://fonts/Nexa-Heavy.ttf" id="1_vpmfi"]
 [ext_resource type="PackedScene" uid="uid://ch0j1f337mx3x" path="res://Things/texts/header.tscn" id="2_3a866"]
 [ext_resource type="PackedScene" uid="uid://dlulv60jen6qn" path="res://Things/Buttons/leave.tscn" id="3_q2ny5"]
+[ext_resource type="PackedScene" uid="uid://fr4g1t4emxqe" path="res://Things/Buttons/button_header.tscn" id="4_nrhv0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rrknh"]
 font = ExtResource("1_vpmfi")
 font_size = 32
 font_color = Color(0.396078, 0.396078, 0.396078, 1)
-
-[sub_resource type="GDScript" id="GDScript_u3bx3"]
-script/source = "extends Button
-
-func _on_pressed():
-	get_tree().change_scene_to_file(\"res://note.tscn\")
-
-func _input(event):
-	if event.is_action_pressed(\"ui_accept\"):
-		get_tree().change_scene_to_file(\"res://note.tscn\")
-"
 
 [sub_resource type="LabelSettings" id="LabelSettings_abqi5"]
 font = ExtResource("1_vpmfi")
@@ -74,32 +64,28 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Pages/Home/VBoxContainer/Header"]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.645
-anchor_bottom = 5.976
-offset_left = 27.0
-offset_top = 15.0
-offset_right = 153.565
-offset_bottom = -509.6
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = -25.0
+offset_right = 231.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="text" parent="Pages/Home/VBoxContainer/Header/HBoxContainer" instance=ExtResource("2_3a866")]
 layout_mode = 2
+size_flags_horizontal = 0
 text = "NoteIt"
 label_settings = SubResource("LabelSettings_rrknh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="newNote" type="Button" parent="Pages/Home/VBoxContainer/Header/HBoxContainer"]
+[node name="newNote" parent="Pages/Home/VBoxContainer/Header/HBoxContainer" instance=ExtResource("4_nrhv0")]
 layout_mode = 2
-size_flags_horizontal = 6
-mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_vpmfi")
-theme_override_font_sizes/font_size = 32
-text = "New note"
-script = SubResource("GDScript_u3bx3")
 
 [node name="Leave" parent="Pages/Home/VBoxContainer/Header/HBoxContainer" instance=ExtResource("3_q2ny5")]
 visible = false
@@ -107,17 +93,23 @@ layout_mode = 2
 size_flags_horizontal = 8
 
 [node name="Label" type="Label" parent="Pages/Home/VBoxContainer/Header/HBoxContainer"]
+visible = false
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 10
 text = "Settings"
 label_settings = SubResource("LabelSettings_abqi5")
 
 [node name="settings" type="Button" parent="Pages/Home/VBoxContainer/Header/HBoxContainer/Label"]
-layout_mode = 0
-offset_right = 141.0
-offset_bottom = 43.0
+layout_mode = 2
+offset_left = -4.0
+offset_top = -2.0
+offset_right = 145.0
+offset_bottom = 48.0
 mouse_default_cursor_shape = 2
-flat = true
+
+[node name="settings" parent="Pages/Home/VBoxContainer/Header/HBoxContainer" instance=ExtResource("4_nrhv0")]
+layout_mode = 2
+text = "Settings"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Pages/Home/VBoxContainer"]
 layout_mode = 2
@@ -149,5 +141,4 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[connection signal="pressed" from="Pages/Home/VBoxContainer/Header/HBoxContainer/newNote" to="Pages/Home/VBoxContainer/Header/HBoxContainer/newNote" method="_on_pressed"]
 [connection signal="pressed" from="Pages/Home/VBoxContainer/Header/HBoxContainer/Label/settings" to="." method="_on_settings_pressed"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://fr4g1t4emxqe"]
+
+[ext_resource type="FontFile" uid="uid://llrtkffwfn7m" path="res://fonts/Nexa-Heavy.ttf" id="1_kcvjd"]
+
+[sub_resource type="GDScript" id="GDScript_u3bx3"]
+script/source = "extends Button
+
+func _on_pressed():
+	get_tree().change_scene_to_file(\"res://note.tscn\")
+
+func _input(event):
+	if event.is_action_pressed(\"ui_accept\"):
+		get_tree().change_scene_to_file(\"res://note.tscn\")
+"
+
+[node name="newNote" type="Button"]
+size_flags_horizontal = 6
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_kcvjd")
+theme_override_font_sizes/font_size = 32
+text = "New note"
+script = SubResource("GDScript_u3bx3")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

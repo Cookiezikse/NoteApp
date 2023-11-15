@@ -15,11 +15,10 @@ script/source = "extends Control
 #Load the data of the file to see if there is something
 func _ready():
 	var datas = global.load_json_file(file)
-	#print(\"ready id : \", global.id_clicked)
-	if datas.has(\"note\"+str(global.id_clicked)):
-		if global.id_clicked != null:
-			var points = datas[\"note\" + str(global.id_clicked)]
-			label.text = points[\"text\"]
+	print(\"id : \", global.id_clicked)
+	if global.id_clicked != null:
+		var points = datas[\"note\" + str(global.id_clicked)]
+		label.text = points[\"text\"]
 	else:
 		global.id_clicked = datas.size()
 		#print(datas.size())
