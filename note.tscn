@@ -7,7 +7,7 @@
 [sub_resource type="GDScript" id="GDScript_jghmg"]
 resource_name = "Note"
 script/source = "extends Control
-
+@onready var label = $VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label
 @onready var file = 'datas/datas.json'
 
 # https://youtu.be/mI4HfyBdV-k?feature=shared   -> ça explique le json et les files 
@@ -16,16 +16,18 @@ func _ready():
 	var datas = global.load_json_file(file)
 	if global.id_clicked != null:
 		var points = datas[\"note\" + str(global.id_clicked)]
-		$VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text = points[\"text\"]
+		label.text = points[\"text\"]
 	else:
 		global.id_clicked = datas.size() - 1
+		#print(datas.size())
+		#print(global.id_clicked)
 
 func _on_label_focus_exited():
-	var data = {
-	\"id\": global.id_clicked,
-	\"text\": $VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text
-	}
-	global.save_note_json_file(file, data)
+	if label.text != \"\":
+		var data = {\"id\":global.id_clicked,\"text\":label.text}
+		print(data[\"text\"])
+		global.save_note_json_file(file, data)
+
 
 func _input(event):
 	if event.is_action_pressed(\"ui_cancel\"):

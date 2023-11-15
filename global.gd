@@ -26,8 +26,17 @@ func save_note_json_file(filepath: String, data):
 		if !parsedResult.has("note" + str(global.id_clicked)):
 			parsedResult["note" + str(parsedResult.size()-1)] = data
 		else:
-			parsedResult["note" + str(global.id_clicked)].clear()
-			parsedResult["note" + str(global.id_clicked)] = data
+			#parsedResult["note" + str(global.id_clicked)].clear()
+			parsedResult["note"+ str(global.id_clicked)].clear()
+			
+			#clear note i et remplacer tout le truc avec data
+			
+			var notex = parsedResult["note"+ str(global.id_clicked)]
+			#var json_data_dic = JSON.parse_string(data)
+			notex = data
+			#notex["text"] = data["text"]
+			#notex["id"] = data["id"]
+			#parsedResult["note" + str(global.id_clicked)] = data
 
 		var json_data = JSON.stringify(parsedResult)
 		dataFile.store_string(json_data)
