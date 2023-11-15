@@ -13,13 +13,11 @@ func _ready():
 	global.id_clicked = null
 	var index = 0
 	index = datas.size()
-	
-	longestId = index - 1
+	longestId = index
 	global.lastId = longestId
 	var count = 0 
 	
-	#print("Menu: ")
-	#print(datas)
+	print(datas)
 	
 	while count < index:
 		#tant qu'il a pas un id il le fait, pour eviter que ça fasse des troues dans les notes
@@ -35,6 +33,7 @@ func _ready():
 
 func create_card_json(object , count ,data):
 	var card = card_scene.instantiate()
+	#print(count)
 	card.text = data["text"]
 	card.date = "10 Nov, 2023"
 	card.id = count

@@ -25,9 +25,8 @@ func _ready():
 func _on_label_focus_exited():
 	if label.text != \"\":
 		var data = {\"id\":global.id_clicked,\"text\":label.text}
-		print(data[\"text\"])
+		#print(data[\"text\"])
 		global.save_note_json_file(file, data)
-
 
 func _input(event):
 	if event.is_action_pressed(\"ui_cancel\"):
