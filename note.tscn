@@ -13,7 +13,7 @@ script/source = "extends Control
 @onready var delete_note_button = $VBoxContainer/Header/HBoxContainer/delete_note
 
 # https://youtu.be/mI4HfyBdV-k?feature=shared   -> ça explique le json et les files 
-
+var new = false
 #Load the data of the file to see if there is something
 func _ready():
 	var datas = global.load_json_file(file)
@@ -22,7 +22,11 @@ func _ready():
 		if global.id_clicked != null:
 			var points = datas[\"note\" + str(global.id_clicked)]
 			label.text = points[\"text\"]
+			#if points.has(\"date\"):
+			#	label.date = points[\"date\"]
 	else:
+		new = true
+		#var time = Time.get_datetime_dict_from_system()
 		global.id_clicked = datas.size()
 		delete_note_button.queue_free()
 		#print(datas.size())

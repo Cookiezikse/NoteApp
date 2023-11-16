@@ -8,6 +8,8 @@ var longestId = 0
 
 #Does the screen with all the notes 
 func _ready():
+	#var time = Time.get_datetime_dict_from_system()
+	#print(time["day"]," ",time["month"], " ",time["year"])
 	var datas = global.load_json_file(file)
 	global.id_clicked = null
 	var index = 0
