@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="NoteIt"
+config/description="App to notes some notes"
 config/tags=PackedStringArray("app", "json", "note", "save_load_files")
 run/main_scene="res://menu.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://Imports/pen.png"
-config/windows_native_icon="res://Imports/3643749-edit-pen-pencil-write-writing_113397.ico"
+config/windows_native_icon="res://Imports/ico_Noteit4.ico"
 
 [autoload]
 

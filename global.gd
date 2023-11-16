@@ -3,8 +3,8 @@ extends Node
 var id_clicked = null
 var lastId = 0
 
-var color_notes = Color(14,14,14,255)
-var color_background = Color(18,18,18,255)
+var hex_background = Color("#181818")
+var hex_notes = Color("#141414")
 
 func load_json_file(filepath: String):
 	if FileAccess.file_exists(filepath):

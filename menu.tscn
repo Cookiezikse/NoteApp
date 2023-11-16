@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c44nw2lskup7a"]
+[gd_scene load_steps=7 format=3 uid="uid://c44nw2lskup7a"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_rufjn"]
 [ext_resource type="FontFile" uid="uid://llrtkffwfn7m" path="res://fonts/Nexa-Heavy.ttf" id="1_vpmfi"]
@@ -10,10 +10,6 @@
 font = ExtResource("1_vpmfi")
 font_size = 32
 font_color = Color(0.396078, 0.396078, 0.396078, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_abqi5"]
-font = ExtResource("1_vpmfi")
-font_size = 32
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -92,22 +88,8 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="Label" type="Label" parent="Pages/Home/VBoxContainer/Header/HBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Settings"
-label_settings = SubResource("LabelSettings_abqi5")
-
-[node name="settings" type="Button" parent="Pages/Home/VBoxContainer/Header/HBoxContainer/Label"]
-layout_mode = 2
-offset_left = -4.0
-offset_top = -2.0
-offset_right = 145.0
-offset_bottom = 48.0
-mouse_default_cursor_shape = 2
-
 [node name="settings" parent="Pages/Home/VBoxContainer/Header/HBoxContainer" instance=ExtResource("4_nrhv0")]
+visible = false
 layout_mode = 2
 text = "Settings"
 
@@ -142,4 +124,4 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [connection signal="pressed" from="Pages/Home/VBoxContainer/Header/HBoxContainer/newNote" to="." method="_on_new_note_pressed"]
-[connection signal="pressed" from="Pages/Home/VBoxContainer/Header/HBoxContainer/Label/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Pages/Home/VBoxContainer/Header/HBoxContainer/settings" to="." method="_on_settings_pressed"]

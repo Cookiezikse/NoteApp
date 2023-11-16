@@ -34,15 +34,9 @@ func exit():
 	if label.text != \"\":
 		var data = {\"id\":global.id_clicked,\"text\":label.text}
 		var parsedData = global.load_json_file(file)
-		print(parsedData)
 		global.save_note_json_file(file,parsedData ,data)
-		print(\"cool\")
 
-#Just if he wants to use shortcuts to go fast
-#func _input(event):
-#	if event.is_action_pressed(\"ui_cancel\"):
-#		get_tree().change_scene_to_file(\"res://menu.tscn\")
-
+#Delete the note 
 func _on_delete_note_pressed():
 	var parsedResult = global.load_json_file(file)
 	global.delete_note_json_file(parsedResult)
@@ -50,15 +44,17 @@ func _on_delete_note_pressed():
 	global.save_json_file(file,parsedResult)
 	get_tree().change_scene_to_file(\"res://menu.tscn\")
 
+#Press the home button
 func _on_texture_button_pressed():
-	exit()
-	get_tree().change_scene_to_file(\"res://menu.tscn\")
+	leave()
 
 func _input(event):
 	if event.is_action_pressed(\"ui_cancel\"):
-		exit()
-		get_tree().change_scene_to_file(\"res://menu.tscn\")
+		leave()
 
+func leave():
+	exit()
+	get_tree().change_scene_to_file(\"res://menu.tscn\")
 
 
 

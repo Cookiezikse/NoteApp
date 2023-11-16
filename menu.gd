@@ -69,6 +69,9 @@ func _on_pressed():
 func _on_new_note_pressed():
 	get_tree().change_scene_to_file("res://note.tscn")
 
+func _on_settings_pressed():
+	get_tree().change_scene_to_file("res://settings.tscn")
+
 
 
 
@@ -133,8 +136,3 @@ func ancien_ready(): #Chercher un système d'id
 			create_card($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/5",count)
 		count += 1
 
-
-
-func _on_settings_pressed():
-	pass
-	#get_tree().change_scene_to_file("res://settings.tscn")

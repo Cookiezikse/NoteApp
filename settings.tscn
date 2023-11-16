@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dohbcgvn8nc0q"]
 
-[ext_resource type="PackedScene" uid="uid://b1lmi1rpv1n58" path="res://Things/Buttons/home.tscn" id="1_p0mnt"]
 [ext_resource type="Script" path="res://settings.gd" id="1_uq3yc"]
 [ext_resource type="PackedScene" uid="uid://dlulv60jen6qn" path="res://Things/Buttons/leave.tscn" id="2_00ddw"]
+[ext_resource type="PackedScene" uid="uid://fr4g1t4emxqe" path="res://Things/Buttons/button_header.tscn" id="2_3o25u"]
 [ext_resource type="PackedScene" uid="uid://ch0j1f337mx3x" path="res://Things/texts/header.tscn" id="3_wih8w"]
 [ext_resource type="PackedScene" uid="uid://diuyita52ajio" path="res://Things/texts/min.tscn" id="4_3qpoi"]
 
@@ -44,9 +44,11 @@ offset_top = -4.0
 offset_right = 1105.0
 offset_bottom = 96.0
 
-[node name="Label" parent="VBoxContainer/Header/HBoxContainer" instance=ExtResource("1_p0mnt")]
+[node name="home" parent="VBoxContainer/Header/HBoxContainer" instance=ExtResource("2_3o25u")]
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "Home"
 
 [node name="Leave" parent="VBoxContainer/Header/HBoxContainer" instance=ExtResource("2_00ddw")]
 layout_mode = 2
@@ -87,8 +89,10 @@ text = "Background Color :
 "
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(70, 0)
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="min" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_3qpoi")]
 custom_minimum_size = Vector2(0, 75)
@@ -106,5 +110,8 @@ offset_bottom = -21.0
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/min/Button" to="." method="_on_button_pressed"]
 
 [editable path="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/min"]
