@@ -19,16 +19,34 @@ func _ready():
 	#print(datas)
 	
 	while count < index:
-		#tant qu'il a pas un id il le fait, pour eviter que ça fasse des troues dans les notes
+		#while true:
+		#	if datas.has("note" + str(count)):
+		#		create_card_json($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/2",count,datas["note" + str(count)])
+		#	else:
+		#		count +=1
+		
+		
+		while !datas.has("note" + str(count)):
+			count +=1
+			if count > index:
+				break
 		if datas.has("note" + str(count)):
 			create_card_json($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/1",count,datas["note" + str(count)])
-		count +=1
+		count += 1
+		while !datas.has("note" + str(count)):
+			count +=1
+			if count > index:
+				break
 		if datas.has("note" + str(count)):
 			create_card_json($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/2",count,datas["note" + str(count)])
-		count +=1
+		count += 1
+		while !datas.has("note" + str(count)):
+			count +=1
+			if count > index:
+				break
 		if datas.has("note" + str(count)):
 			create_card_json($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/3",count,datas["note" + str(count)])
-		count +=1
+		count += 1
 
 #Create a card with its own text and id
 func create_card_json(object , count ,data):
@@ -39,9 +57,17 @@ func create_card_json(object , count ,data):
 	card.id = count
 	object.add_child(card)
 
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		get_tree().change_scene_to_file("res://note.tscn")
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().quit()
 
+func _on_pressed():
+	get_tree().change_scene_to_file("res://note.tscn")
 
-
+func _on_new_note_pressed():
+	get_tree().change_scene_to_file("res://note.tscn")
 
 
 

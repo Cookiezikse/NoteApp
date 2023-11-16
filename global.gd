@@ -31,8 +31,19 @@ func save_note_json_file(filepath: String,parsedResult ,data):
 		dataFile.close()
 	else:
 		print("File doesn't exist !")
+		
+func save_json_file(filepath: String,parsedResult):
+	if FileAccess.file_exists(filepath):
+		var dataFile = FileAccess.open(filepath,FileAccess.WRITE)
+		var json_data = JSON.stringify(parsedResult)
+		dataFile.store_string(json_data)
+		dataFile.close()
+	else:
+		print("File doesn't exist !")
 
-
+func delete_note_json_file(parsedResult):
+	if parsedResult.has("note"+str(global.id_clicked)):
+		parsedResult.erase("note"+str(global.id_clicked))
 
 
 			#parsedResult["note" + str(global.id_clicked)] = data

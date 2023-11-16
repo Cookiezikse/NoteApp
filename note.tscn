@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2iye25t0oe68"]
+[gd_scene load_steps=7 format=3 uid="uid://d14647lrg1y17"]
 
 [ext_resource type="FontFile" uid="uid://llrtkffwfn7m" path="res://fonts/Nexa-Heavy.ttf" id="1_1riq5"]
 [ext_resource type="LabelSettings" uid="uid://c8r4typ2336ah" path="res://fonts/header_text.tres" id="1_g2rpv"]
 [ext_resource type="PackedScene" uid="uid://b1lmi1rpv1n58" path="res://Things/Buttons/home.tscn" id="1_g2xox"]
+[ext_resource type="PackedScene" uid="uid://fr4g1t4emxqe" path="res://Things/Buttons/button_header.tscn" id="3_ijhtq"]
 
 [sub_resource type="GDScript" id="GDScript_jghmg"]
 resource_name = "Note"
 script/source = "extends Control
 @onready var label = $VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label
 @onready var file = 'datas/datas.json'
+@onready var delete_note_button = $VBoxContainer/Header/HBoxContainer/delete_note
 
 # https://youtu.be/mI4HfyBdV-k?feature=shared   -> ça explique le json et les files 
 
@@ -22,26 +24,40 @@ func _ready():
 			label.text = points[\"text\"]
 	else:
 		global.id_clicked = datas.size()
+		delete_note_button.queue_free()
 		#print(datas.size())
 		#print(global.id_clicked)
-
+	label.grab_focus()
+	
 #When he clicks on something else
-func _on_label_focus_exited():
+func exit():
 	if label.text != \"\":
 		var data = {\"id\":global.id_clicked,\"text\":label.text}
-		var parsedData = global.load_json_file('datas/datas.json')
+		var parsedData = global.load_json_file(file)
+		print(parsedData)
 		global.save_note_json_file(file,parsedData ,data)
+		print(\"cool\")
 
 #Just if he wants to use shortcuts to go fast
+#func _input(event):
+#	if event.is_action_pressed(\"ui_cancel\"):
+#		get_tree().change_scene_to_file(\"res://menu.tscn\")
+
+func _on_delete_note_pressed():
+	var parsedResult = global.load_json_file(file)
+	global.delete_note_json_file(parsedResult)
+	#print(\"apres delete function\",parsedResult)
+	global.save_json_file(file,parsedResult)
+	get_tree().change_scene_to_file(\"res://menu.tscn\")
+
+func _on_texture_button_pressed():
+	exit()
+	get_tree().change_scene_to_file(\"res://menu.tscn\")
+
 func _input(event):
 	if event.is_action_pressed(\"ui_cancel\"):
+		exit()
 		get_tree().change_scene_to_file(\"res://menu.tscn\")
-
-
-
-
-
-
 
 
 
@@ -80,7 +96,6 @@ func saving_txt():
 		f.store_string($VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label.text)
 	f.close()
 
-
 		#var line = \"\"
 		#var f = FileAccess.open(\"datas/datas.txt\",FileAccess.READ)
 		#var index = 0
@@ -93,8 +108,6 @@ func saving_txt():
 		#f.close()
 		#if !line:
 		#	line = \"Error/NoData\"
-
-
 
 
 
@@ -121,6 +134,7 @@ func saving_txt():
 	#else:
 	#	print(\"JSON Parse Error: \",json.get_error_message(), \" in \",json_data, \" at line \", json.get_error_line())
 		
+
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3v2nw"]
@@ -184,6 +198,13 @@ size_flags_horizontal = 6
 text = "The new note"
 label_settings = ExtResource("1_g2rpv")
 
+[node name="delete_note" parent="VBoxContainer/Header/HBoxContainer" instance=ExtResource("3_ijhtq")]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.372549, 0.372549, 0.372549, 1)
+text = "Delete note"
+
 [node name="Note_text" type="Control" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -215,4 +236,7 @@ theme_override_font_sizes/font_size = 16
 placeholder_text = "Start with some text !"
 wrap_mode = 1
 
-[connection signal="focus_exited" from="VBoxContainer/Note_text/ScrollContainer/PanelContainer/Label" to="." method="_on_label_focus_exited"]
+[connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/Label/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/delete_note" to="." method="_on_delete_note_pressed"]
+
+[editable path="VBoxContainer/Header/HBoxContainer/Label"]
