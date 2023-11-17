@@ -55,8 +55,8 @@ func create_card_json(object , count ,data):
 	var card = card_scene.instantiate()
 	#print(count)
 	card.text = data["text"]
-	card.date = "10 Nov, 2023"
-	card.id = count
+	card.date = data["date"]
+	card.id = data["id"]
 	object.add_child(card)
 
 func _input(event):
