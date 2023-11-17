@@ -22,6 +22,7 @@ func _ready():
 	$textPanel/Container/date.text = date
 	$textPanel/Container/id.text = str(id)
 
+#When he clicks on the card
 func _on_texture_button_pressed():
 	global.id_clicked = id
 	get_tree().change_scene_to_file(\"res://note.tscn\")
