@@ -53,12 +53,20 @@ func _on_delete_note_pressed():
 
 #Press the home button
 func _on_texture_button_pressed():
+	var newNoteAnimation = $VBoxContainer/Header/HBoxContainer/Label/AnimationPlayer
+	newNoteAnimation.play(\"animation\")
+	await newNoteAnimation.animation_finished
 	leave()
 
 #When he presses the keyboard
 func _input(event):
 	if event.is_action_pressed(\"ui_cancel\"):
+		var newNoteAnimation = $VBoxContainer/Header/HBoxContainer/Label/AnimationPlayer
+		newNoteAnimation.play(\"animation\")
+		await newNoteAnimation.animation_finished
 		leave()
+	if event.is_action_pressed(\"delete_note\"):
+		_on_delete_note_pressed()
 
 #When he leaves
 func leave():
