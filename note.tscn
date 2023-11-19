@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d14647lrg1y17"]
+[gd_scene load_steps=7 format=3 uid="uid://b2iye25t0oe68"]
 
 [ext_resource type="FontFile" uid="uid://llrtkffwfn7m" path="res://fonts/Nexa-Heavy.ttf" id="1_1riq5"]
 [ext_resource type="LabelSettings" uid="uid://c8r4typ2336ah" path="res://fonts/header_text.tres" id="1_g2rpv"]

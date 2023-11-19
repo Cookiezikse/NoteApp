@@ -71,6 +71,7 @@ offset_right = 231.0
 offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 45
 
 [node name="text" parent="Pages/Home/VBoxContainer/Header/HBoxContainer" instance=ExtResource("2_3a866")]
 layout_mode = 2
@@ -82,6 +83,7 @@ vertical_alignment = 1
 
 [node name="newNote" parent="Pages/Home/VBoxContainer/Header/HBoxContainer" instance=ExtResource("4_nrhv0")]
 layout_mode = 2
+size_flags_horizontal = 2
 
 [node name="Leave" parent="Pages/Home/VBoxContainer/Header/HBoxContainer" instance=ExtResource("3_q2ny5")]
 visible = false
