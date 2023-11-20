@@ -100,6 +100,11 @@ func _on_settings_pressed():
 
 
 
+
+
+
+
+
 func create_card(object , i):
 	var card = card_scene.instantiate()
 	
