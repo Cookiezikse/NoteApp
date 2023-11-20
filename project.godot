@@ -33,6 +33,11 @@ window/size/resizable=false
 
 project/assembly_name="NoteApp"
 
+[filesystem]
+
+import/blender/enabled=false
+import/fbx/enabled=false
+
 [input]
 
 delete_note={
