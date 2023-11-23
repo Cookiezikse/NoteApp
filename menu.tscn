@@ -129,6 +129,8 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_constants/separation = 10
 
+[node name="Popups" type="Node" parent="."]
+
 [connection signal="pressed" from="Pages/Home/VBoxContainer/Header/HBoxContainer/newNote" to="." method="_on_new_note_pressed"]
 [connection signal="pressed" from="Pages/Home/VBoxContainer/Header/HBoxContainer/settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Pages/Home/VBoxContainer/Header/HBoxContainer/help" to="." method="_on_help_pressed"]
