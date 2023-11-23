@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c44nw2lskup7a"]
+[gd_scene load_steps=8 format=3 uid="uid://c44nw2lskup7a"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_rufjn"]
 [ext_resource type="FontFile" uid="uid://llrtkffwfn7m" path="res://fonts/Nexa-Heavy.ttf" id="1_vpmfi"]
@@ -6,10 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://dlulv60jen6qn" path="res://Things/Buttons/leave.tscn" id="3_q2ny5"]
 [ext_resource type="PackedScene" uid="uid://fr4g1t4emxqe" path="res://Things/Buttons/button_header.tscn" id="4_nrhv0"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u8hoa"]
+bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_rrknh"]
 font = ExtResource("1_vpmfi")
 font_size = 32
-font_color = Color(0.396078, 0.396078, 0.396078, 1)
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -58,6 +60,15 @@ grow_vertical = 2
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
+[node name="PanelContainer" type="PanelContainer" parent="Pages/Home/VBoxContainer/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u8hoa")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Pages/Home/VBoxContainer/Header"]
 layout_mode = 1
 anchors_preset = 8
@@ -84,6 +95,7 @@ vertical_alignment = 1
 [node name="newNote" parent="Pages/Home/VBoxContainer/Header/HBoxContainer" instance=ExtResource("4_nrhv0")]
 layout_mode = 2
 size_flags_horizontal = 2
+flat = true
 
 [node name="Leave" parent="Pages/Home/VBoxContainer/Header/HBoxContainer" instance=ExtResource("3_q2ny5")]
 visible = false
@@ -98,6 +110,7 @@ text = "Settings"
 [node name="help" parent="Pages/Home/VBoxContainer/Header/HBoxContainer" instance=ExtResource("4_nrhv0")]
 layout_mode = 2
 text = "Help"
+flat = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Pages/Home/VBoxContainer"]
 layout_mode = 2
