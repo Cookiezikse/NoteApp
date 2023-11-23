@@ -1,6 +1,7 @@
 extends Control
 
 var card_scene = preload("res://Things/card.tscn")
+var shortcuts_scene = preload("res://Things/shortcuts_window.tscn")
 @onready var file = 'datas/datas.json' # ça arrive pas a y acceder quand on a le .exe, voir les solutions à avoir
 
 var longestId = 0
@@ -95,7 +96,9 @@ func _on_new_note_pressed():
 func _on_settings_pressed():
 	get_tree().change_scene_to_file("res://settings.tscn")
 
-
+func _on_help_pressed():
+	var shortcuts = shortcuts_scene.instantiate()
+	add_child(shortcuts)
 
 
 
@@ -163,4 +166,5 @@ func ancien_ready(): #Chercher un système d'id
 		if count < longestId:
 			create_card($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/5",count)
 		count += 1
+
 

@@ -95,6 +95,10 @@ visible = false
 layout_mode = 2
 text = "Settings"
 
+[node name="help" parent="Pages/Home/VBoxContainer/Header/HBoxContainer" instance=ExtResource("4_nrhv0")]
+layout_mode = 2
+text = "Help"
+
 [node name="ScrollContainer" type="ScrollContainer" parent="Pages/Home/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -127,3 +131,4 @@ theme_override_constants/separation = 10
 
 [connection signal="pressed" from="Pages/Home/VBoxContainer/Header/HBoxContainer/newNote" to="." method="_on_new_note_pressed"]
 [connection signal="pressed" from="Pages/Home/VBoxContainer/Header/HBoxContainer/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Pages/Home/VBoxContainer/Header/HBoxContainer/help" to="." method="_on_help_pressed"]
