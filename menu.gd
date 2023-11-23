@@ -1,10 +1,14 @@
 extends Control
 
 var card_scene = preload("res://Things/card.tscn")
-@onready var file = 'datas/datas.json' # ça arrive pas a y acceder quand on a le .exe, voir les solutions à avoir
+var shortcuts_scene = preload("res://Things/shortcuts_window.tscn")
+@onready var file = 'datas/datas.json'
 
 var longestId = 0
+#Faire un petit popup quand y a une erreur
+#En mode "Le popup est déja présent"
 
+#Faire aussi un truc de pinned ? Met en haut la note qui est pinned
 
 #Does the screen with all the notes 
 func _ready():
@@ -17,17 +21,7 @@ func _ready():
 	longestId = index
 	global.lastId = longestId
 	var count = 0 
-	
-	#print(datas)
-	
 	while count < index:
-		#while true:
-		#	if datas.has("note" + str(count)):
-		#		create_card_json($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/2",count,datas["note" + str(count)])
-		#	else:
-		#		count +=1
-		
-		
 		while !datas.has("note" + str(count)):
 			count +=1
 			if count > index:
@@ -95,6 +89,10 @@ func _on_new_note_pressed():
 func _on_settings_pressed():
 	get_tree().change_scene_to_file("res://settings.tscn")
 
+func _on_help_pressed():
+	if $Popups.get_child_count() <= 0:
+		var shortcuts = shortcuts_scene.instantiate()
+		$Popups.add_child(shortcuts)
 
 
 
@@ -163,4 +161,5 @@ func ancien_ready(): #Chercher un système d'id
 		if count < longestId:
 			create_card($"Pages/Home/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/5",count)
 		count += 1
+
 
