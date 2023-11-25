@@ -15,6 +15,7 @@ config/description="App to notes some notes"
 config/tags=PackedStringArray("app", "json", "note", "save_load_files")
 run/main_scene="res://menu.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
+boot_splash/bg_color=Color(0.0980392, 0.0980392, 0.0980392, 1)
 boot_splash/show_image=false
 config/icon="res://Imports/pen.png"
 config/windows_native_icon="res://Imports/pen.ico"
