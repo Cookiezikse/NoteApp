@@ -2,7 +2,7 @@ extends Control
 
 var card_scene = preload("res://Things/card.tscn")
 var shortcuts_scene = preload("res://Things/shortcuts_window.tscn")
-@onready var file = 'datas/datas.json'
+var file = 'datas/datas.json'
 
 var longestId = 0
 #Faire un petit popup quand y a une erreur
@@ -12,6 +12,28 @@ var longestId = 0
 @onready var _MainWindow: Window = get_window()
 #Does the screen with all the notes 
 func _ready():
+	
+	
+	global.file = OS.get_cache_dir()+"/NoteIt/datas.json"
+	var dir = DirAccess.open(OS.get_cache_dir())
+	if !dir.dir_exists("NoteIt"):
+		dir.make_dir("NoteIt")
+	print(global.file)
+	file = global.file
+	if FileAccess.file_exists(file):
+		pass
+		print("File exist !")
+	else:
+		var f = FileAccess.open(file,FileAccess.WRITE)
+		f.close()
+		var time = Time.get_datetime_dict_from_system()
+		var month = ""
+		var months_list = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+		var data = {"id":0,"text":"New to this app ?","date":str(time["day"])+" "+months_list[time["month"]-1]+" "+str(time["year"])}
+		var parsedResult = JSON.parse_string("{}")
+		global.save_note_json_file(file,parsedResult,data)
+	
+	#print("Hello ??")
 	_MainWindow.gui_embed_subwindows = false # Make subwindows actual system windows <- VERY IMPORTANT
 	#var time = Time.get_datetime_dict_from_system()
 	#print(time["day"]," ",time["month"], " ",time["year"])

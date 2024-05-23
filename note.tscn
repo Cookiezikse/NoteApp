@@ -16,6 +16,7 @@ script/source = "extends Control
 
 #Load the data of the file to see if there is something
 func _ready():
+	file = global.file
 	var datas = global.load_json_file(file)
 	#print(\"ready id : \", global.id_clicked)
 	if datas.has(\"note\"+str(global.id_clicked)):
@@ -188,7 +189,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Header" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 175)
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header"]
@@ -230,6 +231,7 @@ anchor_bottom = 1.0
 offset_left = 14.0
 offset_top = -22.0
 offset_right = -12.0
+offset_bottom = -42.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -245,7 +247,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_colors/background_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 theme_override_fonts/font = ExtResource("1_1riq5")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 32
 placeholder_text = "Start with some text !"
 wrap_mode = 1
 

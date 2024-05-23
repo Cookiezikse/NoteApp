@@ -6,6 +6,9 @@ var lastId = 0
 var hex_background = Color("#181818")
 var hex_notes = Color("#141414")
 
+var file = ""
+
+
 func load_json_file(filepath: String):
 	if FileAccess.file_exists(filepath):
 		var dataFile = FileAccess.open(filepath,FileAccess.READ)
@@ -20,6 +23,10 @@ func load_json_file(filepath: String):
 		print("File doesn't exist !")
 
 func save_note_json_file(filepath: String,parsedResult ,data):
+	var f = FileAccess.open(OS.get_user_data_dir()+"/NewFile.md",FileAccess.WRITE)
+	f.close()
+	#print("ALLO ?")
+	#print(OS.get_user_data_dir())
 	if FileAccess.file_exists(filepath):
 		var dataFile = FileAccess.open(filepath,FileAccess.WRITE)
 		if !parsedResult.has("note" + str(global.id_clicked)):
@@ -33,6 +40,7 @@ func save_note_json_file(filepath: String,parsedResult ,data):
 		print("File doesn't exist !")
 		
 func save_json_file(filepath: String,parsedResult):
+	#print("Allo ?")
 	if FileAccess.file_exists(filepath):
 		var dataFile = FileAccess.open(filepath,FileAccess.WRITE)
 		var json_data = JSON.stringify(parsedResult)
@@ -54,7 +62,7 @@ func delete_note_json_file(parsedResult):
 func ancien_save_note_json_file(filepath: String,parsedResult ,data):
 	if FileAccess.file_exists(filepath):
 		var dataFile = FileAccess.open(filepath,FileAccess.WRITE)
-		print(parsedResult)
+		#print(parsedResult)
 		if !parsedResult.has("note" + str(global.id_clicked)):
 			parsedResult["note" + str(parsedResult.size())] = data
 		else:
