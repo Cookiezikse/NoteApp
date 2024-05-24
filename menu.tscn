@@ -126,11 +126,11 @@ layout_mode = 2
 size_flags_horizontal = 8
 
 [node name="settings" parent="Pages/Home/VBoxContainer/Header/HBoxContainer" instance=ExtResource("4_nrhv0")]
-visible = false
 layout_mode = 2
 text = "Settings"
 
 [node name="help" parent="Pages/Home/VBoxContainer/Header/HBoxContainer" instance=ExtResource("4_nrhv0")]
+visible = false
 layout_mode = 2
 text = "Help"
 flat = true

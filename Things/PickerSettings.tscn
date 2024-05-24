@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://6t2b3n8opgcm"]
+
+[ext_resource type="PackedScene" uid="uid://ch0j1f337mx3x" path="res://Things/texts/header.tscn" id="1_512fh"]
+[ext_resource type="Script" path="res://Things/PickerSettings.gd" id="1_mgbu4"]
+[ext_resource type="PackedScene" uid="uid://diuyita52ajio" path="res://Things/texts/min.tscn" id="2_j3crm"]
+
+[node name="BackgroundPick" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
+size_flags_horizontal = 4
+size_flags_vertical = 2
+script = ExtResource("1_mgbu4")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="text" parent="." instance=ExtResource("1_512fh")]
+layout_mode = 2
+text = "Background Color : 
+"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="min" parent="." instance=ExtResource("2_j3crm")]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+text = "Default"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" parent="min" index="0"]
+offset_left = -2.0
+offset_top = 24.0
+offset_right = 2.0
+offset_bottom = -21.0
+
+[connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="pressed" from="min/Button" to="." method="_on_button_pressed"]
+
+[editable path="min"]

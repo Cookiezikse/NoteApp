@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dlulv60jen6qn" path="res://Things/Buttons/leave.tscn" id="2_00ddw"]
 [ext_resource type="PackedScene" uid="uid://fr4g1t4emxqe" path="res://Things/Buttons/button_header.tscn" id="2_3o25u"]
 [ext_resource type="PackedScene" uid="uid://ch0j1f337mx3x" path="res://Things/texts/header.tscn" id="3_wih8w"]
-[ext_resource type="PackedScene" uid="uid://diuyita52ajio" path="res://Things/texts/min.tscn" id="4_3qpoi"]
+[ext_resource type="PackedScene" uid="uid://6t2b3n8opgcm" path="res://Things/PickerSettings.tscn" id="5_6llvc"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -33,7 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Header" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header"]
@@ -41,7 +41,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 offset_left = 37.0
 offset_top = -4.0
-offset_right = 1105.0
+offset_right = 496.0
 offset_bottom = 96.0
 
 [node name="home" parent="VBoxContainer/Header/HBoxContainer" instance=ExtResource("2_3o25u")]
@@ -51,8 +51,10 @@ size_flags_vertical = 4
 text = "Home"
 
 [node name="Leave" parent="VBoxContainer/Header/HBoxContainer" instance=ExtResource("2_00ddw")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 10
+text = "leave"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -73,45 +75,26 @@ clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 75)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(40, 0)
+[node name="BackgroundPick2" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_6llvc")]
 layout_mode = 2
 
-[node name="text" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_wih8w")]
+[node name="BackgroundPick" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_6llvc")]
 layout_mode = 2
-text = "Background Color : 
-"
+text = "Text Color"
+state = 1
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(20, 20)
+[node name="BackgroundPick3" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_6llvc")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+text = "Other Color"
+state = 3
 
-[node name="min" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_3qpoi")]
-custom_minimum_size = Vector2(0, 75)
+[node name="BackgroundPick4" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("5_6llvc")]
 layout_mode = 2
-text = "Default"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/min" index="0"]
-offset_left = -2.0
-offset_top = 24.0
-offset_right = 2.0
-offset_bottom = -21.0
+text = "Note Color"
+state = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/home" to="." method="_on_home_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/min/Button" to="." method="_on_button_pressed"]
-
-[editable path="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/min"]

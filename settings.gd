@@ -1,16 +1,10 @@
 extends Control
 
-@onready var colorPicker = $VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/ColorPickerButton
-
 func _ready():
 	pass
 
 func _process(delta):
-	pass
-
-
-func _on_button_pressed():
-	colorPicker.color = global.hex_background
+	$VBoxContainer/Header/HBoxContainer/home.add_theme_color_override("font_color", All.hex_text)
 
 func leave():
 	#sauvegarder les couleurs etc
@@ -22,3 +16,6 @@ func _on_home_pressed():
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		leave()
+
+func ChangeHexBackground():
+	pass

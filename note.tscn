@@ -16,6 +16,12 @@ script/source = "extends Control
 
 #Load the data of the file to see if there is something
 func _ready():
+	
+	label.add_theme_color_override(\"font_color\", All.hex_text)
+	
+	$ColorRect.color = All.hex_background
+	$VBoxContainer/Note_text/ScrollContainer/PanelContainer.get_theme_stylebox(\"Stylebox\").bg_color = All.hex_notes
+	
 	file = global.file
 	var datas = global.load_json_file(file)
 	#print(\"ready id : \", global.id_clicked)
@@ -43,6 +49,7 @@ func exit():
 		var data = {\"id\":global.id_clicked,\"text\":label.text,\"date\":str(time[\"day\"])+\" \"+months_list[time[\"month\"]-1]+\" \"+str(time[\"year\"])}
 		var parsedData = global.load_json_file(file)
 		global.save_note_json_file(file,parsedData ,data)
+	get_tree().change_scene_to_file(\"res://menu.tscn\")
 
 #Delete the note 
 func _on_delete_note_pressed():
@@ -72,7 +79,7 @@ func _input(event):
 #When he leaves
 func leave():
 	exit()
-	get_tree().change_scene_to_file(\"res://menu.tscn\")
+
 
 
 
@@ -246,6 +253,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_3v2nw")
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_colors/background_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_1riq5")
 theme_override_font_sizes/font_size = 32
 placeholder_text = "Start with some text !"

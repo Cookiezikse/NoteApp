@@ -23,7 +23,12 @@ func _ready():
 	$textPanel/Container/title.text = text
 	$textPanel/Container/date.text = date
 	$textPanel/Container/id.text = str(id)
+	
+	self.get_theme_stylebox(\"Stylebox\").bg_color = All.hex_notes
 
+	$textPanel/Container/title.label_settings.font_color = All.hex_text
+	$textPanel/Container/date.label_settings.font_color = All.hex_text
+	
 #When he clicks on the card
 func _on_texture_button_pressed():
 	global.id_clicked = id

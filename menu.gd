@@ -3,6 +3,9 @@ extends Control
 var card_scene = preload("res://Things/card.tscn")
 var shortcuts_scene = preload("res://Things/shortcuts_window.tscn")
 var file = 'datas/datas.json'
+var file_settings = ""
+
+var load_settings : bool = true
 
 var longestId = 0
 #Faire un petit popup quand y a une erreur
@@ -12,7 +15,39 @@ var longestId = 0
 @onready var _MainWindow: Window = get_window()
 #Does the screen with all the notes 
 func _ready():
+	if load_settings:
+		global.file_settings = OS.get_cache_dir()+"/NoteIt/settings.json"
+		var dir1 = DirAccess.open(OS.get_cache_dir())
+		if !dir1.dir_exists("NoteIt"):
+			dir1.make_dir("NoteIt")
+		if FileAccess.file_exists(global.file_settings):
+			var datas_settings = global.load_json_file(global.file_settings)
+			
+			#All.hex_background = Color.from_string(datas_settings.hex_background, All.hex_background)
+			#All.hex_notes = Color.from_string(datas_settings.hex_notes, All.hex_notes)
+			#All.hex_text = Color.from_string(datas_settings.hex_text, Color.BLACK)#All.hex_text)
+			#All.hex_other = Color.from_string(datas_settings.hex_other, All.hex_other)
+			
+			#All.hex_background = Color(datas_settings.hex_background)
+			#All.hex_notes = Color(datas_settings.hex_notes) 
+			#All.hex_text = Color(datas_settings.hex_text)
+			#All.hex_other = Color(datas_settings.hex_other)
+			
+			All.hex_background = global.ColorFromStringNew(datas_settings.hex_background)
+			All.hex_notes = global.ColorFromStringNew(datas_settings.hex_notes)
+			All.hex_text = global.ColorFromStringNew(datas_settings.hex_text)
+			All.hex_other = global.ColorFromStringNew(datas_settings.hex_other)
+			
+		else:
+			var f = FileAccess.open(global.file_settings,FileAccess.WRITE)
+			f.close()
+			var data2 = {"hex_background":All.hex_background,"hex_notes":All.hex_notes,"hex_text":All.hex_text,"hex_other":All.hex_other}
+			global.save_json_file(global.file_settings,data2)
 	
+	$ColorRect.color = All.hex_background
+	$Pages/Home/VBoxContainer/Header/HBoxContainer/text.label_settings.font_color = All.hex_text
+	$Pages/Home/VBoxContainer/Header/HBoxContainer/newNote.add_theme_color_override("font_color", All.hex_text)
+	$Pages/Home/VBoxContainer/Header/HBoxContainer/settings.add_theme_color_override("font_color", All.hex_text)
 	
 	global.file = OS.get_cache_dir()+"/NoteIt/datas.json"
 	var dir = DirAccess.open(OS.get_cache_dir())
